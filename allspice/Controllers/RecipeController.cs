@@ -6,10 +6,12 @@ namespace allspice.Controllers;
 public class RecipeController : ControllerBase
 {
    private readonly RecipeService _recipeService;
+   private readonly IngredientService _ingredientService;
    private readonly Auth0Provider _auth0;
 
-   public RecipeController(RecipeService recipeService, Auth0Provider auth0){
+   public RecipeController(RecipeService recipeService, IngredientService ingredientService, Auth0Provider auth0){
       _recipeService = recipeService;
+      _ingredientService = ingredientService;
       _auth0 = auth0;
    }
 
@@ -45,6 +47,17 @@ public class RecipeController : ControllerBase
          return BadRequest(e.Message);
       }
    }
+
+   [HttpGet("{recipeId}/ingredients")]
+   public ActionResult<List<Ingredient>> getIngredientsByRecipeId(int recipeId){
+      try {
+         List<Ingredient> ingredients = _ingredientService.getIngredientsByRecipeId(recipeId);
+         return Ok(ingredients);
+      } catch (Exception e){
+         return BadRequest(e.Message);
+      }
+   }
+   
 
    [HttpPut("{recipeId}")]
    [Authorize]

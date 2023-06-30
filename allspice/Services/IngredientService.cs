@@ -18,4 +18,10 @@ public class IngredientService{
       List<Ingredient> ingredients = _repo.getAllIngredients();
       return ingredients;
    }
+
+   internal List<Ingredient> getIngredientsByRecipeId(int recipeId)
+   {
+      List<Ingredient> ingredients = _repo.getIngredientsByRecipeId(recipeId);
+      return ingredients;
+   }
 }

@@ -28,4 +28,21 @@ public class IngredientRepository
       List<Ingredient> ingredients = _db.Query<Ingredient>(sql).ToList();
       return ingredients;
    }
+
+   internal List<Ingredient> getIngredientsByRecipeId(int recipeId)
+   {
+      string sql = @"
+      SELECT
+      ing.*,
+      rcp.*
+      FROM ingredients ing
+      JOIN recipes rcp ON ing.recipeId = rcp.Id
+      WHERE ing.recipeId = @recipeId;
+      ";
+      List<Ingredient> ingredients = _db.Query<Ingredient, Recipe, Ingredient>(sql, (ingredient, recipe) => {
+      ingredient.recipeId = recipe.Id;
+      return ingredient;
+   }, new { recipeId }).ToList();
+   return ingredients;
+   }
 }
