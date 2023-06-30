@@ -43,3 +43,16 @@ INSERT INTO ingredients
 (name, quantity)
 VALUES
 ("Mazda Miata", "1 Cup");
+
+CREATE TABLE favorites(
+  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  accountId VARCHAR(500) COMMENT 'Account Id',
+  recipeId INT COMMENT 'Recipe Id',
+  FOREIGN KEY (accountId) REFERENCES accounts(id) ON DELETE CASCADE,
+  FOREIGN KEY (recipeId) REFERENCES recipes(id) ON DELETE CASCADE
+) default charset utf8 COMMENT '';
+
+INSERT INTO favorites
+(accountId, recipeId)
+VALUES("649caf64efdb2de0a2c28353", LAST_INSERT_ID());
+SELECT account FROM favorites favs JOIN accounts account on account.id = fav.accountId WHERE fav.recipeId = 1;

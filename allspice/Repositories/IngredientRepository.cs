@@ -22,11 +22,28 @@ public class IngredientRepository
       return ingredient;
    }
 
+   internal int DeleteIngredient(int ingredientId)
+   {
+      string sql = "DELETE FROM ingredients WHERE id = @ingredientId LIMIT 1;";
+      int rows = _db.Execute(sql, new {ingredientId});
+      return rows;
+   }
+
    internal List<Ingredient> getAllIngredients()
    {
       string sql = "SELECT * FROM ingredients;";
       List<Ingredient> ingredients = _db.Query<Ingredient>(sql).ToList();
       return ingredients;
+   }
+
+   internal Ingredient GetById(int ingredientId)
+   {
+      string sql = @"
+      SELECT * FROM ingredients 
+      WHERE id = @ingredientId;
+      ";
+      Ingredient ingredient = _db.Query<Ingredient>(sql, new {ingredientId}).FirstOrDefault();
+      return ingredient;
    }
 
    internal List<Ingredient> getIngredientsByRecipeId(int recipeId)

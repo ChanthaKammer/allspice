@@ -5,11 +5,14 @@ namespace allspice.Controllers;
 public class AccountController : ControllerBase
 {
   private readonly AccountService _accountService;
+
+  private readonly FavoriteService _favoriteService;
   private readonly Auth0Provider _auth0Provider;
 
-  public AccountController(AccountService accountService, Auth0Provider auth0Provider)
+  public AccountController(AccountService accountService, FavoriteService favoriteService, Auth0Provider auth0Provider)
   {
     _accountService = accountService;
+    _favoriteService = favoriteService;
     _auth0Provider = auth0Provider;
   }
 
@@ -24,6 +27,17 @@ public class AccountController : ControllerBase
     }
     catch (Exception e)
     {
+      return BadRequest(e.Message);
+    }
+  }
+  [HttpGet("favorites")]
+  [Authorize]
+  public async Task<ActionResult<FavoriteRecipe>> GetFavoriteRecipes(){
+    try {
+      Account userInfo = await _auth0Provider.GetUserInfoAsync<Account>(HttpContext);
+      List<FavoriteRecipe> myFavorites = _favoriteService.getMyFavorites(userInfo.Id);
+      return Ok(myFavorites);
+    } catch (Exception e){
       return BadRequest(e.Message);
     }
   }

@@ -12,6 +12,10 @@ public class Recipe{
    public Account Creator {get;set;}
 }
 
+public class FavoritesRecipe : Recipe{
+   public int FavoriteId {get;set;}
+}
+
 
 // type": "object",
 //     "required": [

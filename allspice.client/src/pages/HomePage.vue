@@ -8,17 +8,31 @@
       </h1>
     </div>
   </div>
+  <section class="container-fluid">
+    <div class="row">
+      <TestCard/>
+    </div>
+  </section>
 </template>
 
 <script>
+import TestCard from '../components/TestCard.vue';
+import { AppState } from '../AppState.js';
+import { computed } from 'vue';
 export default {
-  setup() {
-    return {}
-  }
+    setup() {
+        return {
+          recipes: computed (() => AppState.recipes)
+        };
+    },
+    components: { TestCard }
 }
 </script>
 
 <style scoped lang="scss">
+* {
+  border: 1px solid green;
+}
 .home {
   display: grid;
   height: 80vh;
