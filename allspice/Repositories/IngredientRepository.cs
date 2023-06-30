@@ -8,6 +8,20 @@ public class IngredientRepository
       _db = db;
    }
 
+   internal Ingredient createIngredient(Ingredient ingredientData)
+   {
+      string sql = @"
+      INSERT INTO ingredients
+      (quantity, name, recipeId)
+      VALUES
+      (@quantity, @name, @recipeId);
+      SELECT * FROM ingredients WHERE id = LAST_INSERT_ID();
+      ";
+
+      Ingredient ingredient = _db.Query<Ingredient>(sql, ingredientData).FirstOrDefault();
+      return ingredient;
+   }
+
    internal List<Ingredient> getAllIngredients()
    {
       string sql = "SELECT * FROM ingredients;";

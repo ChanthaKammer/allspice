@@ -7,6 +7,12 @@ public class IngredientService{
       _repo = repo;
    }
 
+   internal Ingredient createIngredient(Ingredient ingredientData)
+   {
+      Ingredient ingredient = _repo.createIngredient(ingredientData);
+      return ingredient;
+   }
+
    internal List<Ingredient> getAllIngredients()
    {
       List<Ingredient> ingredients = _repo.getAllIngredients();

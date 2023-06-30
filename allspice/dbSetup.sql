@@ -33,7 +33,7 @@ CREATE TABLE ingredients(
   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   name VARCHAR(500) COMMENT 'Ingredient Name',
   quantity VARCHAR(500) COMMENT 'Ingredient Quantity',
-
+  recipeId INT COMMENT 'Recipe id',
   createdAt DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Time Created',
   updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) default charset utf8 COMMENT '';
