@@ -1,31 +1,56 @@
 <template>
-  <div class="home flex-grow-1 d-flex flex-column align-items-center justify-content-center">
-    <div class="home-card p-5 bg-white rounded elevation-3">
-      <img src="https://bcw.blob.core.windows.net/public/img/8600856373152463" alt="CodeWorks Logo"
-        class="rounded-circle">
-      <h1 class="my-5 bg-dark text-white p-3 rounded text-center">
-        Vue 3 Starter
-      </h1>
-    </div>
-  </div>
   <section class="container-fluid">
     <div class="row">
       <TestCard/>
     </div>
   </section>
+<section class="container-fluid">
+    <div class="row bg-dark text-white justify-content-center">
+        <div class="col-md-8">
+          <div class="row text-center">
+              <h1>Filter By Category</h1>
+          </div>
+          <div class="row justify-content-center bg-light text-dark rounded-3">
+              <div class="col-md-3">
+                <h1>Lorem</h1>
+              </div>
+              <div class="col-md-3">
+                <h1>Lorem</h1>
+              </div>
+              <div class="col-md-3">
+                <h1>Lorem</h1>
+              </div>
+          </div>
+        </div>
+    </div>
+  </section>
+  <div class="row">
+    <div class="col-md-4 p-5">
+        <div class="d-flex text-center flex-column bg-light recipe-card rounded-4">
+          <h5>Title</h5>
+          <h3>Categories</h3>
+          <p>Description</p>
+        </div>
+    </div>
+    <RecipeCard/>
+    <div class="col-md-4 recipe-card">
+
+    </div>
+  </div>
 </template>
 
 <script>
 import TestCard from '../components/TestCard.vue';
 import { AppState } from '../AppState.js';
 import { computed } from 'vue';
+import RecipeCard from '../components/RecipeCard.vue';
 export default {
     setup() {
         return {
           recipes: computed (() => AppState.recipes)
         };
     },
-    components: { TestCard }
+    components: { TestCard, RecipeCard }
 }
 </script>
 
