@@ -12,7 +12,7 @@
 import Pop from '../utils/Pop.js';
 import { AppState } from '../AppState.js';
 import { logger } from '../utils/Logger.js';
-import Recipe from '../models/Recipe.js'
+import { Recipe } from '../models/Recipe.js';
    export default {
       props: {
          recipe: {type: Recipe, required: true}

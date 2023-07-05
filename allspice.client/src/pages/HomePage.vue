@@ -39,7 +39,7 @@ import { computed, onMounted } from 'vue';
 import RecipeCard from '../components/RecipeCard.vue';
 import FilterBar from '../components/FilterBar.vue';
 import { everythingService } from '../services/EverythingService.js';
-import Recipe from '../models/Recipe.js';
+// import {Recipe} from '../models/Recipe.js';
 import Ingredient from '../models/Ingredient.js';
 import Favorite from '../models/Favorite.js';
 import { logger } from '../utils/Logger.js';
