@@ -1,9 +1,11 @@
 <template>
-   <div class="col-md-4 p-5">
-      <div class="d-flex text-center flex-column bg-light recipe-card rounded-4">
-         <h5>{{ recipe.title }}</h5>
+   <div class="col-md-4 p-4">
+      <div class="d-flex text-center flex-column recipe-card rounded-4" :style="{ 'background-image': 'url(' +recipe.img +')' }">
+         <h5>{{ recipe.title.split(' ').splice(0, 3).join(' ') }}</h5>
          <h3>{{  recipe.category }}</h3>
          <p>{{ recipe.instructions }}</p>
+         <p>{{ recipe.creator.name }}</p>
+         <!-- <img :src="recipe.img" class="img-fluid object-fit-cover" :title="recipe.title"> -->
       </div>
    </div>
 </template>
@@ -29,4 +31,8 @@ import { Recipe } from '../models/Recipe.js';
    * {
       border: 1px solid tan
    }
+   .recipe-card img{
+      max-height: 250px;
+   }
+
 </style>
