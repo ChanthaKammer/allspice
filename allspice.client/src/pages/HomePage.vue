@@ -28,9 +28,12 @@
           </div>
       </div>
   </section> -->
-  <div class="row justify-content-between">
-    <RecipeCard :recipe="r" v-for="r in recipes" :key="r.id"/>
-  </div>
+  to solve the x overflow on this I had to make sure to put the child element inside of a container-fluid
+  <section class="container-fluid">
+    <div class="row justify-content-between">
+      <RecipeCard :recipe="r" v-for="r in recipes" :key="r.id"/>
+    </div>
+  </section>
 </template>
 
 <script>

@@ -2,7 +2,7 @@
   <header>
     <Navbar />
   </header>
-  <main class="bg-dark">
+  <main class="bg-tan">
     <router-view />
   </main>
    <footer class="bg-dark text-light">
@@ -31,6 +31,9 @@ export default {
   --main-height: calc(100vh - 32px - 64px);
 }
 
+.bg-tan{
+  background-color: tan;
+}
 
 footer {
   display: grid;
