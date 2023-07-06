@@ -1,28 +1,28 @@
 <template>
-   <ul class="nav justify-content-around bg-dark">
+   <ul class="d-flex nav justify-content-around text-dark bg-light align-items-center pt-2">
       <li class="nav-item">
-         <h3 href="" class="text-white bg-dark" role="button" @click="getTowerEvents">
+         <h3 href="" class="" role="button" @click="getTowerEvents">
             All
          </h3>
       </li>
       <li class="nav-item">
-         <h3 href="" class="text-white bg-dark" role="button" @click="filterEvents('concert')">
-            Concert
+         <h3 href="" class="" role="button" @click="filterEvents('concert')">
+            My Recipes
          </h3>
       </li>
       <li class="nav-item">
-         <h3 href="" class="text-white bg-dark" role="button" @click="filterEvents('convention')">
-            Convention
+         <h3 href="" class="" role="button" @click="filterEvents('convention')">
+            Favorites
          </h3>
       </li>
       <li class="nav-item">
-         <h3 href="" class="text-white bg-dark" role="button" @click="filterEvents('sport')">
-            Sport
+         <h3 href="" class="" role="button" @click="filterEvents('sport')">
+            Pasta
          </h3>
       </li>
       <li class="nav-item">
-         <h3 href="" class="text-white bg-dark" role="button" @click="filterEvents('digital')">
-            Digital
+         <h3 href="" class="" role="button" @click="filterEvents('digital')">
+            Soup
          </h3>
       </li>
    </ul>
@@ -62,6 +62,9 @@ import { logger } from '../utils/Logger.js';
 
 
 <style lang="scss" scoped>
+   * {
+      border: 0px solid green;
+   }
    ul li a {
       text-decoration: none;
    }

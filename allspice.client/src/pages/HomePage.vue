@@ -5,8 +5,15 @@
     </div>
   </section> -->
   <section class="container-fluid">
-    <h1 class="text-center">Filter Bar</h1>
-    <FilterBar/>
+    <div class="row position-relative text-center">
+      <img src="../assets/img/allspicebackground.png" alt="All Spice Background Picture" class="header-photo object-fit-cover p-4">
+      <div class="position-absolute top-50 start-50 translate-middle fs-5">
+          <h1 style="font-size:5em; color: green;">Allspice</h1>
+      </div>
+    </div>
+    <div class="row p-4">
+      <FilterBar class="elevation-5"/>
+    </div>
   </section>
   <!-- <section class="container-fluid">
       <div class="row bg-dark text-white justify-content-center">
@@ -28,7 +35,7 @@
           </div>
       </div>
   </section> -->
-  to solve the x overflow on this I had to make sure to put the child element inside of a container-fluid
+  <!-- to solve the x overflow on this I had to make sure to put the child element inside of a container-fluid -->
   <section class="container-fluid">
     <div class="row justify-content-between">
       <RecipeCard :recipe="r" v-for="r in recipes" :key="r.id"/>
@@ -71,7 +78,12 @@ export default {
 
 <style scoped lang="scss">
 * {
-  border: 1px solid green;
+  border: 0px solid green;
+}
+
+.header-photo{
+  max-height: 320px;
+  top: 50px;
 }
 .home {
   display: grid;
