@@ -6,9 +6,9 @@
   </section> -->
   <section class="container-fluid">
     <div class="row position-relative text-center">
-      <img src="../assets/img/allspicebackground.png" alt="All Spice Background Picture" class="header-photo object-fit-cover p-4">
+      <img src="../assets/img/alt-background.png" alt="All Spice Background Picture" class="header-photo object-fit-cover p-4">
       <div class="position-absolute top-50 start-50 translate-middle fs-5">
-          <h1 style="font-size:5em; color: green;">Allspice</h1>
+          <h1 style="font-size:5em; color: white;">Allspice</h1>
       </div>
     </div>
     <div class="row p-4">

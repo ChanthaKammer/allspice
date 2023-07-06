@@ -7,6 +7,11 @@
          <p>{{ recipe.instructions }}</p>
          <p>{{ recipe.creator.name }}</p> -->
          <img :src="recipe.img" class="img-fluid object-fit-cover elevation-5" :title="recipe.title">
+         <div class="position-absolute top-0 start-0 w-100 h-100 d-flex flex-column justify-content-start">
+            <button class="glass text-white">
+            <a>View Recipe</a>
+            </button>      
+         </div>
          <div class="position-absolute top-0 start-0 w-100 h-100 d-flex flex-column justify-content-end">
             <div class="glass p-2 text-white">
                <h5>{{ recipe.title }}</h5>
