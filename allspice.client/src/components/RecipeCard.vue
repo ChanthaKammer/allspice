@@ -57,20 +57,24 @@
                <i class="mdi mdi-heart float-end" style="font-size: 2rem" role="button"></i>
             </div>
             <div class="modal-header container-fluid">
-               <div class="row justify-content-around p-3">
+               <div class="row justify-content-around">
                   <div class="col-md-4">
                      <img :src="recipe.img" alt="" class="img-fluid rounded-4 recipe-img">
                   </div>
                   <div class="col-md-6">
                      <div class="d-flex flex-row justify-content-between pt-3 align-items-center">
                         <h1 v-if="!editing" class="modal-title fs-5" id="exampleModalLabel">{{ recipe.title }}</h1>
-                        <input v-if="editing" type="text" class="editing" name="" id="titletext" v-model="editable.title">
                         <h1 v-if="!editing" class="modal-title fs-5 text-success bg-dark rounded-3 p-2" id="exampleModalLabel">{{ recipe.category }}</h1>
-                        <input v-if="editing" type="text" class="editing" name="" id="categorytext" v-model="editable.category">
                      </div>
                      <p v-if="!editing" class="pt-2"> {{ recipe.instructions }} </p>
-                     <textarea v-if="editing" type="textarea" rows="4" class="editing" name="" id="instructionstext" v-model="editable.instructions"></textarea>
+                     <input v-if="editing" type="text" class="form-control mb-1" name="" id="titletext" v-model="editable.img">
+                     <input v-if="editing" type="text" class="form-control mb-1" name="" id="titletext" v-model="editable.title">
+                     <input v-if="editing" type="text" class="form-control mb-1" name="" id="categorytext" v-model="editable.category">
+                     <textarea v-if="editing" type="textarea" rows="4" class="form-control mb-1" name="" id="instructionstext" v-model="editable.instructions"></textarea>
                   </div>
+               </div>
+               <div class="row justify-content-around p-3">
+                  {{ recipe.ingredients }}
                </div>
             </div>
             <div class="modal-footer d-flex flex-row justify-content-between">
@@ -78,9 +82,8 @@
                   <img :src="recipe.creator.picture" :alt="recipe.creator.name" class="img-fluid rounded-circle object-fit-cover" style="height: 3rem; width: 3rem;">
                   <h4>{{ recipe.creator.name }}</h4>
                </div>
-               <button v-if="account.id != recipe.creator.id" type="button" class="btn btn-success" @click="editing = !editing; console.log(editing)">Edit Recipe</button>
-               <h1 v-if="editing">You are editing</h1>
-               <h1 v-else>You are not editing</h1>
+               <button v-if="account.id != recipe.creator.id && !editing" type="button" class="btn btn-success" @click="editing = !editing; console.log(editing)">Edit Recipe</button>
+               <button v-if="editing" type="button" class="btn btn-success" @click="editing = !editing; console.log(editing)">Save Changes</button>
                <!-- <button
                   type="button"
                   class="btn btn-secondary"
