@@ -45,7 +45,7 @@
    <div
    :id="'exampleModal-' + recipe.id" class="modal fade sticky-top" tabindex="-1" :aria-labelledby="'exampleModalLabel-' + recipe.id" aria-hidden="true"
    >
-      <div class="modal-dialog modal-lg scrollspy">
+      <div class="modal-dialog modal-lg modal-dialog-scrollable">
          <div class="modal-content">
             <div class="d-flex flex-row justify-content-between p-3 fs-5">
                <button
@@ -59,7 +59,7 @@
             <div class="modal-header container-fluid">
                <div class="row justify-content-around p-3">
                   <div class="col-md-4">
-                     <img :src="recipe.img" alt="" class="img-fluid rounded-4">
+                     <img :src="recipe.img" alt="" class="img-fluid rounded-4 recipe-img">
                   </div>
                   <div class="col-md-6">
                      <div class="d-flex flex-row justify-content-between">
@@ -115,6 +115,12 @@ border: 0px solid tan;
 }
 .recipe-card img {
 height: 20rem;
+}
+
+.recipe-img {
+   max-height: 40vw;
+   width: 100vw;
+   object-fit: cover;
 }
 .glass {
 backdrop-filter: blur(3px);
