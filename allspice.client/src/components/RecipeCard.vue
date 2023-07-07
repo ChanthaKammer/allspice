@@ -61,15 +61,19 @@
                   <div class="col-md-4">
                      <img :src="recipe.img" alt="" class="img-fluid rounded-4 recipe-img">
                   </div>
-                  <div class="col-md-6">
-                     <div class="d-flex flex-row justify-content-between pt-3 align-items-center">
+                  <div class="col-md-8">
+                     <div class="d-flex flex-row justify-content-between align-items-center">
                         <h1 v-if="!editing" class="modal-title fs-5" id="exampleModalLabel">{{ recipe.title }}</h1>
                         <h1 v-if="!editing" class="modal-title fs-5 text-success bg-dark rounded-3 p-2" id="exampleModalLabel">{{ recipe.category }}</h1>
                      </div>
                      <p v-if="!editing" class="pt-2"> {{ recipe.instructions }} </p>
+                     <label v-if="editing" for="recipeImg" class="form-label">Recipe Image</label>
                      <input v-if="editing" type="text" class="form-control mb-1" name="" id="titletext" v-model="editable.img">
+                     <label v-if="editing" for="recipeTitle" class="form-label">Recipe Title</label>
                      <input v-if="editing" type="text" class="form-control mb-1" name="" id="titletext" v-model="editable.title">
+                     <label v-if="editing" for="recipeCategory" class="form-label">Recipe Category</label>
                      <input v-if="editing" type="text" class="form-control mb-1" name="" id="categorytext" v-model="editable.category">
+                     <label v-if="editing" for="recipeInstructions" class="form-label">Recipe Instructions</label>
                      <textarea v-if="editing" type="textarea" rows="4" class="form-control mb-1" name="" id="instructionstext" v-model="editable.instructions"></textarea>
                   </div>
                </div>
