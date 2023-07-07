@@ -15,16 +15,6 @@
             Favorites
          </h3>
       </li>
-      <li class="nav-item">
-         <h3 href="" class="" role="button" @click="filterEvents('sport')">
-            Pasta
-         </h3>
-      </li>
-      <li class="nav-item">
-         <h3 href="" class="" role="button" @click="filterEvents('digital')">
-            Soup
-         </h3>
-      </li>
    </ul>
 </template>
 

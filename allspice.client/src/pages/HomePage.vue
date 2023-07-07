@@ -8,9 +8,11 @@
     <div class="row position-relative text-center">
       <img src="../assets/img/alt-background.png" alt="All Spice Background Picture" class="header-photo object-fit-cover p-4">
       <div class="position-absolute top-50 start-50 translate-middle fs-5">
-          <h1 style="font-size:5em; color: white;">Allspice</h1>
+          <h1 style="font-size:5em; color: white;" class="">Allspice</h1>
       </div>
     </div>
+  </section>
+  <section class="container-fluid">
     <div class="row p-4">
       <FilterBar class="elevation-5"/>
     </div>
@@ -37,7 +39,7 @@
   </section> -->
   <!-- to solve the x overflow on this I had to make sure to put the child element inside of a container-fluid -->
   <section class="container-fluid">
-    <div class="row justify-content-between">
+    <div class="row justify-content-between animate__animated animate__slideInUp animate__fast">
       <RecipeCard :recipe="r" v-for="r in recipes" :key="r.id"/>
     </div>
   </section>
@@ -103,5 +105,6 @@ export default {
       object-position: center;
     }
   }
+  
 }
 </style>

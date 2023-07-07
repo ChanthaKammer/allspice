@@ -5,15 +5,21 @@
   <main class="bg-tan">
     <router-view />
   </main>
-   <footer class="bg-dark text-light">
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
+    <footer class="bg-dark text-light">
     Made with 💖 by CodeWorks
   </footer>
 </template>
+
 
 <script>
 import { computed } from 'vue'
 import { AppState } from './AppState'
 import Navbar from './components/Navbar.vue'
+
 
 export default {
   setup() {
