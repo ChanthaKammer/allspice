@@ -54,7 +54,10 @@
                   data-bs-dismiss="modal"
                   aria-label="Close"
                ></button>
-               <i class="mdi mdi-heart float-end" style="font-size: 2rem" role="button"></i>
+               <div>
+                  <i v-if="account.id != recipe.creator.id" class="mdi mdi-delete float-end" style="font-size: 2rem; color:red" role="button"></i>
+                  <i class="mdi mdi-heart float-end" style="font-size: 2rem" role="button"></i>
+               </div>
             </div>
             <div class="modal-header container-fluid">
                <div class="row justify-content-around">
