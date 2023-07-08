@@ -100,26 +100,10 @@
                </button> -->
                <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
             </div>
-            <div>
-               <h1>Hello</h1>
-               <h1>Hello</h1>
-               <h1>Hello</h1>
-               <h1>Hello</h1>
-               <h1>Hello</h1>
-               <h1>Hello</h1>
-               <h1>Hello</h1>
-               <h1>Hello</h1>
-               <h1>Hello</h1>
-               <h1>Hello</h1>
-               <h1>Hello</h1>
-               <h1>Hello</h1>
-               <h1>Hello</h1>
-               <h1>Hello</h1>
-               <h1>Hello</h1>
-            </div>
          </div>
       </div>
    </div>
+   
 </template>
 
 <script>
@@ -164,6 +148,10 @@ height: 20rem;
 .glass {
 backdrop-filter: blur(3px);
 background-color: rgba(0, 0, 0, 0.345);
+}
+
+.modal {
+   max-height:600px;
 }
 
 
