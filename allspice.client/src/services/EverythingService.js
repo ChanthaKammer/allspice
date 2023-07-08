@@ -16,6 +16,8 @@ class EverythingService {
    }
 }
 
+
+//SECTION INGREDIENTS
 class IngredientService {
    async getIngredientsByRecipeId(recipeId) {
       const res = await api.get(`api/recipes/${recipeId}/ingredients`);
@@ -25,6 +27,7 @@ class IngredientService {
    }
 }
 
+//SECTION FAVORITES
 class FavoriteService {
    async getFavoritesByAccountId(accountId) {
       const res = await api.get(`api/accounts/${accountId}/favorites`);

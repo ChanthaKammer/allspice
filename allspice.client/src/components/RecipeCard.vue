@@ -43,7 +43,7 @@
 
    <!-- Modal -->
    <div
-   :id="'exampleModal-' + recipe.id" class="modal animate__animated animate__fadeIn animate__fast sticky-top" tabindex="-1" :aria-labelledby="'exampleModalLabel-' + recipe.id" aria-hidden="true"
+   :id="'exampleModal-' + recipe.id" class="modal animate__animated animate__fadeIn animate__fast sticky-top " tabindex="-1" :aria-labelledby="'exampleModalLabel-' + recipe.id" aria-hidden="true" data-bs-scroll="true"
    >
       <div class="modal-dialog modal-xl modal-dialog-scrollable">
          <div class="modal-content">
@@ -99,6 +99,23 @@
                   Close
                </button> -->
                <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+            </div>
+            <div>
+               <h1>Hello</h1>
+               <h1>Hello</h1>
+               <h1>Hello</h1>
+               <h1>Hello</h1>
+               <h1>Hello</h1>
+               <h1>Hello</h1>
+               <h1>Hello</h1>
+               <h1>Hello</h1>
+               <h1>Hello</h1>
+               <h1>Hello</h1>
+               <h1>Hello</h1>
+               <h1>Hello</h1>
+               <h1>Hello</h1>
+               <h1>Hello</h1>
+               <h1>Hello</h1>
             </div>
          </div>
       </div>

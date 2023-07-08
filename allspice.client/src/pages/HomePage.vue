@@ -13,42 +13,33 @@
     </div>
   </section>
   <section class="container-fluid">
-    <div class="row p-4">
-      <FilterBar class="elevation-5"/>
+    <div class="row p-4 justify-content-center">
+      <FilterBar class="elevation-5 col-md-6"/>
     </div>
   </section>
-  <!-- <section class="container-fluid">
-      <div class="row bg-dark text-white justify-content-center">
-          <div class="col-md-8">
-            <div class="row text-center">
-                <h1>Filter By Category</h1>
-            </div>
-            <div class="row justify-content-center bg-light text-dark rounded-3">
-                <div class="col-md-3">
-                  <h1>Lorem</h1>
-                </div>
-                <div class="col-md-3">
-                  <h1>Lorem</h1>
-                </div>
-                <div class="col-md-3">
-                  <h1>Lorem</h1>
-                </div>
-            </div>
-          </div>
-      </div>
-  </section> -->
-  <!-- to solve the x overflow on this I had to make sure to put the child element inside of a container-fluid -->
+  <section class="container-fluid d-flex justify-content-center">
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createRecipeModal" aria-controls="createRecipeModal">
+      Launch demo modal
+    </button>
+    <Modal id="createRecipeModal">
+      <RecipeForm/>
+    </Modal>
+  </section>
   <section class="container-fluid">
     <div class="row justify-content-between animate__animated animate__slideInUp animate__fast">
       <RecipeCard :recipe="r" v-for="r in recipes" :key="r.id"/>
     </div>
   </section>
+  //SECTION - CREATE RECIPE MODAL
+
 </template>
 
 <script>
 import { AppState } from '../AppState.js';
 import { computed, onMounted } from 'vue';
 import RecipeCard from '../components/RecipeCard.vue';
+import RecipeForm from '../components/RecipeForm.vue';
+import Modal from '../components/Modal.vue';
 import FilterBar from '../components/FilterBar.vue';
 import { everythingService } from '../services/EverythingService.js';
 // import {Recipe} from '../models/Recipe.js';
@@ -74,13 +65,16 @@ export default {
           recipes: computed (() => AppState.recipes)
         };
     },
-    components: { RecipeCard, FilterBar }
+    components: { RecipeCard, RecipeForm, FilterBar, Modal }
 }
 </script>
 
 <style scoped lang="scss">
+.modal-backdrop{
+  display: none;
+}
 * {
-  border: 0px solid green;
+  border: 1px solid green;
 }
 
 .header-photo{
