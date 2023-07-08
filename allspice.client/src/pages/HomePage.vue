@@ -19,7 +19,7 @@
   </section>
   <section class="container-fluid d-flex justify-content-center">
     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createRecipeModal" aria-controls="createRecipeModal">
-      Launch demo modal
+      Create Recipe
     </button>
     <Modal id="createRecipeModal">
       <RecipeForm/>
