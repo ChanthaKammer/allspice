@@ -14,21 +14,32 @@
             <label for="Instructions" class="form-label">Instructions</label>
             <textarea type="textarea" rows="4" class="form-control" id="recipeInstructions"></textarea>
          </div>
+         <div class="row mb-2">
+            <div class="col-8">
+               <label for="Recipe Category" class="form-label">Ingredient</label>
+            </div>
+            <div class="col-2">
+               <label for="Recipe Category" class="form-label">Quantity</label>
+            </div>
+         </div>
          <div class="row mb-3">
-            <div class="col-md-8">
-               <label for="Recipe Category" class="form-label">Category</label>
+            <div class="col-8">
                <input type="text" class="form-control" id="recipeCategory">
             </div>
-            <div class="col-md-4">
-               <label for="Recipe Category" class="form-label">Category</label>
+            <div class="col-2">
                <input type="text" class="form-control" id="recipeCategory">
             </div>
+            <div class="col-1">
+
+               <button class="btn btn-info">
+                  Add
+               </button>
+            </div>
          </div>
-         <div class="mb-3 form-check">
-            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-            <label class="form-check-label" for="exampleCheck1">Check me out</label>
-         </div>
+         <div class="d-flex justify-content-end gap-2">
             <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+         </div>
       </div>
    </form>
 </template>
