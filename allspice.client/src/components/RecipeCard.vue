@@ -62,7 +62,7 @@
             <div class="modal-header container-fluid">
                <div class="row justify-content-around">
                   <div class="col-md-4">
-                     <img :src="recipe.img" alt="" class="img-fluid rounded-4 recipe-img">
+                     <img :src="recipe.img" alt="" class="img-fluid recipe-img mb-2">
                   </div>
                   <div class="col-md-8">
                      <div class="d-flex flex-row justify-content-between align-items-center">
