@@ -5,6 +5,7 @@ export const AppState = reactive({
   user: {},
   /** @type {import('./models/Account.js').Account} */
   account: {},
+  favoritess: [],
 
   // recipes: [
   //   {id: 1, title: "Mac and Cheese", instructions: "Heat some cheese up.", img: "Placeholder", category: "Pasta"},

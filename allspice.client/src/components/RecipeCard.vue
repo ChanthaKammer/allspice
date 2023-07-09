@@ -14,6 +14,7 @@
          <!-- <router-link :to="{ name: 'Recipe', params: {id: recipe.id}}" class="btn text-success lighten-30 selectable text-uppercase">
          </router-link> -->
          <a class="cursor-pointer">View Recipe</a>
+         <h1 class="bg-light" v-if="recipeIngredients.length > 0"> Ingredients </h1>
       </button>
       </div>
       <div
@@ -54,6 +55,9 @@
                      <h1 v-if="!editing" class="modal-title fs-5" id="exampleModalLabel">{{ recipe.title }}</h1>
                      <h1 v-if="!editing" class="modal-title fs-5 text-success bg-dark rounded-3 p-2" id="exampleModalLabel">{{ recipe.category }}</h1>
                   </div>
+                  <div class="container-fluid">
+                     {{ recipeIngredients }}
+                  </div>
                   <p v-if="!editing" class="pt-2"> {{ recipe.instructions }} </p>
                   <label v-if="editing" for="recipeImg" class="form-label">Recipe Image</label>
                   <input v-if="editing" type="text" class="form-control mb-1" name="" id="titletext" v-model="editable.img">
@@ -66,7 +70,6 @@
                </div>
             </div>
             <div class="row justify-content-around p-3">
-               {{ ingredients }}
             </div>
          </div>
          <div class="modal-footer d-flex flex-row justify-content-between">
@@ -96,7 +99,6 @@ export default {
    recipe: { type: Recipe, required: true }
 },
 setup(props) {
-   const ingredients = ref({})
    onMounted(() => {
       getIngredients()
    })
@@ -107,16 +109,22 @@ setup(props) {
          logger.error(error.Message)
       }
    }
+   const isFavorite =  computed(() => {
+      return AppState.favorites.some(f => f.id == props.recipe.id)
+   });
    const editing = ref(false);
    const editable = ref();
+   const recipeIngredients = ref();
    watchEffect(() => {
       editable.value = props.recipe;
    })
    return {
       editing,
       editable,
+      recipeIngredients: computed(() => AppState.ingredients.filter(i => i.recipeId == props.recipe.id)),
       account: computed(() => AppState.account),
-      ingredients: computed(() => AppState.ingredients.filter(i => i.recipeId === props.recipe.id))
+      favorites: computed(() => AppState.favorites),
+      isFavorite
       };
    },
 };

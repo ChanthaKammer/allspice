@@ -1,7 +1,7 @@
 <template>
    <form>
       <div class="modal-body ">
-         <class class="container-fluid">
+         <div class="container-fluid">
             <div class="mb-3">
                <label for="recipeTitle" class="form-label">Recipe Title</label>
                <input type="text" class="form-control" id="recipeTitle" aria-describedby="recipeTitle">
@@ -60,7 +60,7 @@
                <button type="submit" class="btn btn-primary">Submit</button>
                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             </div>
-         </class>
+         </div>
       </div>
    </form>
 </template>

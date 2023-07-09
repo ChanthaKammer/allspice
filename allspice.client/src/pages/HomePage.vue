@@ -30,8 +30,6 @@
       <RecipeCard :recipe="r" v-for="r in recipes" :key="r.id"/>
     </div>
   </section>
-  //SECTION - CREATE RECIPE MODAL
-
 </template>
 
 <script>
@@ -41,7 +39,7 @@ import RecipeCard from '../components/RecipeCard.vue';
 import RecipeForm from '../components/RecipeForm.vue';
 import Modal from '../components/Modal.vue';
 import FilterBar from '../components/FilterBar.vue';
-import { everythingService } from '../services/EverythingService.js';
+import { everythingService, favoriteService } from '../services/EverythingService.js';
 // import {Recipe} from '../models/Recipe.js';
 import Ingredient from '../models/Ingredient.js';
 import Favorite from '../models/Favorite.js';
@@ -52,17 +50,31 @@ export default {
       async function GetRecipes(){
         try {
           await everythingService.getRecipes();
-          logger.log('recipes', AppState.recipes)
+          // logger.log('recipes', AppState.recipes)
         } catch (error) {
+          Pop.error(error);
+          logger.error(error);
+        }
+      }
+      async function getFavoritesByAccountId(){
+        try {
+          await favoriteService.getFavoritesByAccountId()
+          logger.log('favorites', AppState.favorites)
+        } catch(error){
           Pop.error(error);
           logger.error(error);
         }
       }
       onMounted(() => {
         GetRecipes();
+        setTimeout(() => {
+          getFavoritesByAccountId();
+        }, 5000);
       })
         return {
-          recipes: computed (() => AppState.recipes)
+          recipes: computed (() => AppState.recipes),
+          appState: computed(() => AppState.ingredients),
+          account: computed(() => AppState.account)
         };
     },
     components: { RecipeCard, RecipeForm, FilterBar, Modal }
@@ -74,7 +86,7 @@ export default {
   display: none;
 }
 * {
-  border: 1px solid green;
+  border: 0px solid green;
 }
 
 .header-photo{
