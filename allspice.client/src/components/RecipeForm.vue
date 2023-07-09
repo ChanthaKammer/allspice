@@ -15,20 +15,20 @@
                <label for="Instructions" class="form-label">Instructions</label>
                <textarea type="textarea" rows="4" class="form-control" id="recipeInstructions"></textarea>
             </div>
-            <div class="d-flex align-items-end">
+            <!-- <div class="d-flex justify-content-align-items-end">
                <div class="col-8 d-flex align-items-end">
                   <label for="Recipe Category" class="form-label">Ingredient</label>
                </div>
                <div class="col-2">
                   <label for="Recipe Category" class="form-label">Quantity</label>
                </div>
-            </div>
+            </div> -->
             <div class="d-flex mb-3 justify-content-between">
-               <div class="col-8">
-                  <input type="text" class="form-control" id="recipeCategory">
+               <div class="col-8 pe-1">
+                  <input type="text" class="form-control" id="recipeCategory" placeholder="Ingredient">
                </div>
-               <div class="col-2">
-                  <input type="text" class="form-control" id="recipeCategory">
+               <div class="col px-1">
+                  <input type="text" class="form-control" id="recipeCategory" placeholder="Quantity">
                </div>
                <button class="btn btn-info">
                      Add
