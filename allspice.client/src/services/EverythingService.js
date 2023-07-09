@@ -21,9 +21,13 @@ class EverythingService {
 class IngredientService {
    async getIngredientsByRecipeId(recipeId) {
       const res = await api.get(`api/recipes/${recipeId}/ingredients`);
-      AppState.ingredients = res.data.map( i => {
-         new Ingredient(i);
-      });
+      // AppState.ingredients = res.data.map(i => {
+      //    new Ingredient(i);
+      // });
+      AppState.ingredients.push(res.data)
+      console.log(AppState.ingredients)
+      // console.log("get ingredients by recipe id", recipeId,  res.data);
+      // console.log(AppState.ingredients);
    }
 }
 

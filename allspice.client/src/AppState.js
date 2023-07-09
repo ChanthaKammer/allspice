@@ -14,7 +14,8 @@ export const AppState = reactive({
   //   {id: 5, title: "Chicken Noodle Soup", instructions: "Boil some noodles and chicken.", img: "Placeholder", category: "Soup"},
   //   {id: 6, title: "French Onion Soup", instructions: "Caramelize some onions.", img: "Placeholder", category: "Soup"}
   // ]
-  recipes : []
+  recipes : [],
+  ingredients: []
 })
 
 
