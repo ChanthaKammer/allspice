@@ -11,10 +11,9 @@
       class="position-absolute top-0 start-0 w-100 h-100 d-flex flex-column justify-content-start"
       >
       <button class="bg-light text-white fs-5">
-         <!-- <router-link :to="{ name: 'Recipe', params: {id: recipe.id}}" class="btn text-success lighten-30 selectable text-uppercase">
-         </router-link> -->
          <a class="cursor-pointer">View Recipe</a>
          <h1 class="bg-light" v-if="recipeIngredients.length > 0"> Ingredients </h1>
+         <!-- <h1 v-if="isFavorite == true">Favorite</h1> -->
       </button>
       </div>
       <div
@@ -22,7 +21,7 @@
       >
       <div class="glass p-2 text-white rounded-3 elevation-5">
          <h5>{{ recipe.title }} {{recipe.id}}</h5>
-         <h3>{{ recipe.category }}</h3>
+         <h3>{{ recipe.category }} {{ isFavorite }}</h3>
       </div>
       </div>
    </div>
@@ -109,7 +108,7 @@ setup(props) {
          logger.error(error.Message)
       }
    }
-   const isFavorite =  computed(() => {
+   const isFavorite = computed(() => {
       return AppState.favorites.some(f => f.id == props.recipe.id)
    });
    const editing = ref(false);
