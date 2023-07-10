@@ -54,11 +54,13 @@ class FavoriteService {
    }
    async addFavorite(recipeId) {
       const res = await api.post('api/favorites', { recipeId: recipeId });
+      this.getFavoritesByAccountId();
       console.log("Adding favorite", recipeId);
    }
    async removeFavorite(favoriteId){
-      console.log("Removing favorite", favoriteId)
       const res = await api.delete(`api/favorites/${favoriteId}`)
+      this.getFavoritesByAccountId();
+      console.log("Removing favorite", favoriteId)
    }
 }
 

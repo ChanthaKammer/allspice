@@ -112,6 +112,9 @@ setup(props) {
    const isFavorite = computed(() => {
       return AppState.favorites.some(f => f.id == props.recipe.id)
    });
+   const favoriteId = computed(() => {
+      return AppState.favorites.find(f => f.id == props.recipe.id)
+   })
    const editing = ref(false);
    const editable = ref();
    const recipeIngredients = ref();
@@ -129,9 +132,9 @@ setup(props) {
       },
       async removeFavorite(){
          try{
-            let favoriteId = AppState.favorites.find(f => f.id == props.recipe.id);
-            console.log(favoriteId);
-            // await favoriteService.removeFavorite(props.recipe.id)
+            // logger.log(favoriteId)
+            isFavorite.value = false;
+            await favoriteService.removeFavorite(favoriteId.value.favoriteId)
          } catch (error){
             logger.error(error.Message)
          }
