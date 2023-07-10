@@ -1,17 +1,17 @@
 <template>
    <ul class="d-flex nav justify-content-around text-dark bg-light align-items-center pt-2">
       <li class="nav-item">
-         <h3 href="" class="" role="button" @click="getTowerEvents">
+         <h3 href="" class="" role="button" @click="getRecipes()">
             All
          </h3>
       </li>
       <li class="nav-item">
-         <h3 href="" class="" role="button" @click="filterEvents('concert')">
+         <h3 href="" class="" role="button" @click="filterRecipes('mine')">
             My Recipes
          </h3>
       </li>
       <li class="nav-item">
-         <h3 href="" class="" role="button" @click="filterEvents('convention')">
+         <h3 href="" class="" role="button" @click="filterRecipes('favorites')">
             Favorites
          </h3>
       </li>
@@ -24,22 +24,23 @@
 import Pop from '../utils/Pop.js';
 import { AppState } from '../AppState.js';
 import { logger } from '../utils/Logger.js';
+import { everythingService } from '../services/EverythingService.js';
    export default {
       setup(){
          return {
-            async filterEvents(type){
+            async filterRecipes(type){
                try {
-                  // await towerEventService.getTowerEvents()
-                  // await towerEventService.filterEvents(type)
+                  console.log("Filtering by" +type)
+                  await everythingService.filterRecipes(type);
                } catch (error) {
                   Pop.error(error)
                   logger.log(error)
                }
             },
-            async getTowerEvents(){
+            async getRecipes(){
             try {
-               logger.log("getTowerEvents")
-               // await towerEventService.getTowerEvents()
+               logger.log("getRecipes filterBar")
+               await everythingService.getRecipes()
             } catch (error) {
                Pop.error(error)
                logger.log(error)

@@ -13,7 +13,7 @@
       <button class="bg-light text-white fs-5">
          <a class="cursor-pointer">View Recipe</a>
          <h1 class="bg-light" v-if="recipeIngredients.length > 0"> Ingredients </h1>
-         <!-- <h1 v-if="isFavorite == true">Favorite</h1> -->
+         <h1 v-if="isFavorite" class="bg-danger">Favorite</h1>
       </button>
       </div>
       <div
@@ -21,7 +21,7 @@
       >
       <div class="glass p-2 text-white rounded-3 elevation-5">
          <h5>{{ recipe.title }} {{recipe.id}}</h5>
-         <h3>{{ recipe.category }} {{ isFavorite }}</h3>
+         <h3>{{ recipe.category }}</h3>
       </div>
       </div>
    </div>
@@ -41,7 +41,8 @@
             ></button>
             <div>
                <i v-if="account.id != recipe.creator.id" class="mdi mdi-delete float-end" style="font-size: 2rem; color:red" role="button"></i>
-               <i class="mdi mdi-heart float-end" style="font-size: 2rem" role="button"></i>
+               <i class="mdi mdi-heart-outline float-end" style="font-size: 2rem" role="button" v-if="!isFavorite" @click="addFavorite()"></i>
+               <i class="mdi mdi-heart float-end" style="font-size: 2rem" role="button" v-if="isFavorite" @click="removeFavorite()"></i>
             </div>
          </div>
          <div class="modal-header container-fluid">
@@ -92,7 +93,7 @@ import { logger } from "../utils/Logger.js";
 import { Recipe } from "../models/Recipe.js";
 import { Modal } from "bootstrap";
 import { computed, onMounted, ref, watchEffect } from "vue";
-import { ingredientService } from "../services/EverythingService.js";
+import { favoriteService, ingredientService } from "../services/EverythingService.js";
 export default {
    props: {
    recipe: { type: Recipe, required: true }
@@ -118,6 +119,23 @@ setup(props) {
       editable.value = props.recipe;
    })
    return {
+      async addFavorite(){
+         try{
+            await favoriteService.addFavorite(props.recipe.id)
+            isFavorite.value = true;
+         } catch (error){
+            logger.error(error.Message)
+         }
+      },
+      async removeFavorite(){
+         try{
+            let favoriteId = AppState.favorites.find(f => f.id == props.recipe.id);
+            console.log(favoriteId);
+            // await favoriteService.removeFavorite(props.recipe.id)
+         } catch (error){
+            logger.error(error.Message)
+         }
+      },
       editing,
       editable,
       recipeIngredients: computed(() => AppState.ingredients.filter(i => i.recipeId == props.recipe.id)),

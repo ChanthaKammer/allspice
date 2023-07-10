@@ -14,6 +14,17 @@ class EverythingService {
       AppState.recipes = res.data.map(r => new Recipe(r));
       // logger.log(AppState.recipes);
    }
+
+   async filterRecipes(query){
+      if(query == 'mine'){
+         this.getRecipes();
+         AppState.recipes = AppState.recipes.filter(r => r.creatorId == AppState.account.id);
+      }
+      if(query == 'favorites'){
+         this.getRecipes();
+         AppState.recipes = AppState.favorites;
+      }
+   }
 }
 
 
@@ -41,8 +52,13 @@ class FavoriteService {
       AppState.favorites = res.data;
       logger.log(AppState.favorites)
    }
-   async createFavorite(recipeId) {
-      const res = await api.post('api/favorites', recipeId);
+   async addFavorite(recipeId) {
+      const res = await api.post('api/favorites', { recipeId: recipeId });
+      console.log("Adding favorite", recipeId);
+   }
+   async removeFavorite(favoriteId){
+      console.log("Removing favorite", favoriteId)
+      const res = await api.delete(`api/favorites/${favoriteId}`)
    }
 }
 

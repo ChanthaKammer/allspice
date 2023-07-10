@@ -69,7 +69,7 @@ export default {
         GetRecipes();
         setTimeout(() => {
           getFavoritesByAccountId();
-        }, 5000);
+        }, 2000);
       })
         return {
           recipes: computed (() => AppState.recipes),
