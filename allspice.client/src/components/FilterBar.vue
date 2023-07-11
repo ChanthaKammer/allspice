@@ -30,7 +30,7 @@ import { everythingService } from '../services/EverythingService.js';
          return {
             async filterRecipes(type){
                try {
-                  console.log("Filtering by" +type)
+                  logger.log("Filtering by" +type)
                   await everythingService.filterRecipes(type);
                } catch (error) {
                   Pop.error(error)

@@ -13,15 +13,16 @@
       <button class="bg-light text-white fs-5">
          <a class="cursor-pointer">View Recipe</a>
          <h1 class="bg-light" v-if="recipeIngredients.length > 0"> Ingredients </h1>
-         <h1 v-if="isFavorite" class="bg-danger">Favorite</h1>
       </button>
+      <i v-if="isFavorite" class="mdi mdi-heart-outline fs-1"></i>
+      <i v-if="!isFavorite" class="mdi mdi-heart-outline fs-1"></i>
       </div>
       <div
       class="position-absolute top-0 start-0 w-100 h-100 d-flex flex-column justify-content-end p-2"
       >
       <div class="glass p-2 text-white rounded-3 elevation-5">
          <h5>{{ recipe.title }} {{recipe.id}}</h5>
-         <h3>{{ recipe.category }}</h3>
+         <h3>{{ recipe.category }} <img class="img-fluid rounded-circle object-fit-cover w-25 h-25" :src="recipe.creator.picture"></h3>
       </div>
       </div>
    </div>

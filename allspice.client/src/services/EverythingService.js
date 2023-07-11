@@ -21,7 +21,6 @@ class EverythingService {
          AppState.recipes = AppState.recipes.filter(r => r.creatorId == AppState.account.id);
       }
       if(query == 'favorites'){
-         this.getRecipes();
          AppState.recipes = AppState.favorites;
       }
    }
