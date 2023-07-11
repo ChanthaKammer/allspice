@@ -14,8 +14,8 @@
          <a class="cursor-pointer">View Recipe</a>
          <h1 class="bg-light" v-if="recipeIngredients.length > 0"> Ingredients </h1>
       </button>
-      <i v-if="isFavorite" class="mdi mdi-heart-outline fs-1"></i>
-      <i v-if="!isFavorite" class="mdi mdi-heart-outline fs-1"></i>
+      <i v-if="isFavorite" class="mdi mdi-heart fs-1 text-danger" @click="removeFavorite()"></i>
+      <i v-if="!isFavorite" class="mdi mdi-heart-outline fs-1" @click="addFavorite"></i>
       </div>
       <div
       class="position-absolute top-0 start-0 w-100 h-100 d-flex flex-column justify-content-end p-2"
@@ -97,7 +97,7 @@ import { computed, onMounted, ref, watchEffect } from "vue";
 import { favoriteService, ingredientService } from "../services/EverythingService.js";
 export default {
    props: {
-   recipe: { type: Recipe, required: true }
+   recipe: { type: Object, required: true }
 },
 setup(props) {
    onMounted(() => {

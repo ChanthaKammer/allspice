@@ -39,7 +39,8 @@ import { everythingService } from '../services/EverythingService.js';
             },
             async getRecipes(){
             try {
-               logger.log("getRecipes filterBar")
+               AppState.recipes = [];
+               logger.log("getRecipes All Recipes")
                await everythingService.getRecipes()
             } catch (error) {
                Pop.error(error)

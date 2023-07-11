@@ -17,12 +17,18 @@ class EverythingService {
 
    async filterRecipes(query){
       if(query == 'mine'){
-         this.getRecipes();
+         // this.getRecipes();
          AppState.recipes = AppState.recipes.filter(r => r.creatorId == AppState.account.id);
       }
       if(query == 'favorites'){
          AppState.recipes = AppState.favorites;
       }
+   }
+
+   async createRecipe(recipeData){
+      const res = await api.post('api/recipes', recipeData);
+      AppState.recipes.push(new Recipe(res.data));
+      return res.data.id;
    }
 }
 
