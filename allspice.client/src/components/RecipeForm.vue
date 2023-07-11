@@ -1,10 +1,15 @@
 <template>
-   <form>
+   <form @submit.prevent="createRecipe">
       <div class="modal-body ">
          <div class="container-fluid">
             <div class="mb-3">
                <label for="recipeTitle" class="form-label">Recipe Title</label>
                <input type="text" class="form-control" id="recipeTitle" aria-describedby="recipeTitle" v-model="editable.title">
+               <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
+            </div>
+            <div class="mb-3">
+               <label for="recipeImage" class="form-label">Recipe Image</label>
+               <input type="text" class="form-control" id="recipeTitle" aria-describedby="recipeTitle" v-model="editable.img">
                <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
             </div>
             <div class="mb-3">
@@ -23,7 +28,7 @@
                   <label for="Recipe Category" class="form-label">Quantity</label>
                </div>
             </div> -->
-            <div class="d-flex mb-3 justify-content-between">
+            <!-- <div class="d-flex mb-3 justify-content-between">
                <div class="col-8 pe-1">
                   <input type="text" class="form-control" id="recipeCategory" placeholder="Ingredient">
                </div>
@@ -55,7 +60,7 @@
                <button class="btn btn-danger">
                      <i class="mdi mdi-trash-can"></i>
                </button>
-            </div>
+            </div> -->
             <div class="d-flex justify-content-end gap-2">
                <button type="submit" class="btn btn-primary">Submit</button>
                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

@@ -1,8 +1,10 @@
 <template>
 <div class="col-md-4 p-4">
-   <div class="d-flex flex-column recipe-card justify-content-center position-relative " type="button" 
-      data-bs-toggle="modal"
-      :data-bs-target="'#exampleModal-' + recipe.id">
+   <div class="bg-dark">
+      <i v-if="isFavorite" class="ps-2 mdi mdi-heart fs-1 text-danger" @click="removeFavorite()" role="button"></i>
+      <i v-if="!isFavorite" class="ps-2 mdi mdi-heart-outline fs-1" @click="addFavorite()" role="button"></i>
+   </div>
+   <div class="d-flex flex-column recipe-card justify-content-center position-relative ">
       <img
       :src="recipe.img"
       class="img-fluid object-fit-cover elevation-5"
@@ -11,11 +13,8 @@
       class="position-absolute top-0 start-0 w-100 h-100 d-flex flex-column justify-content-start"
       >
       <button class="bg-light text-white fs-5">
-         <a class="cursor-pointer">View Recipe</a>
          <h1 class="bg-light" v-if="recipeIngredients.length > 0"> Ingredients </h1>
       </button>
-      <i v-if="isFavorite" class="mdi mdi-heart fs-1 text-danger" @click="removeFavorite()"></i>
-      <i v-if="!isFavorite" class="mdi mdi-heart-outline fs-1" @click="addFavorite"></i>
       </div>
       <div
       class="position-absolute top-0 start-0 w-100 h-100 d-flex flex-column justify-content-end p-2"
@@ -24,6 +23,10 @@
          <h5>{{ recipe.title }} {{recipe.id}}</h5>
          <h3>{{ recipe.category }} <img class="img-fluid rounded-circle object-fit-cover w-25 h-25" :src="recipe.creator.picture"></h3>
       </div>
+      <button class="btn btn-light" type="button"
+         data-bs-toggle="modal"
+         :data-bs-target="'#exampleModal-' + recipe.id">View Recipe</button>
+         <button @click="addFavorite()">Add favorite</button>
       </div>
    </div>
 </div>
@@ -125,14 +128,17 @@ setup(props) {
    return {
       async addFavorite(){
          try{
+            logger.log("liking", props.recipe.id)
             await favoriteService.addFavorite(props.recipe.id)
             isFavorite.value = true;
+            // Modal.getOrCreateInstance(`#exampleModal-${props.recipe.id}`).hide()
          } catch (error){
             logger.error(error.Message)
          }
       },
       async removeFavorite(){
          try{
+            logger.log("liking", props.recipe.id)
             // logger.log(favoriteId)
             isFavorite.value = false;
             await favoriteService.removeFavorite(favoriteId.value.favoriteId)

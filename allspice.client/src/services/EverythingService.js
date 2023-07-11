@@ -28,7 +28,7 @@ class EverythingService {
    async createRecipe(recipeData){
       const res = await api.post('api/recipes', recipeData);
       AppState.recipes.push(new Recipe(res.data));
-      return res.data.id;
+      logger.log("Creating recipe", recipeData);
    }
 }
 
