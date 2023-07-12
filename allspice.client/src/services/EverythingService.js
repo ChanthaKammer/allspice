@@ -15,6 +15,12 @@ class EverythingService {
       // logger.log(AppState.recipes);
    }
 
+   async getRecipeById(recipeId){
+      // console.log("Getting recipe by", recipeId);
+      const res = await api.get('api/recipes/'+ recipeId)
+      AppState.activeRecipe = new Recipe(res.data);
+      console.log(res.data);
+   }
    async filterRecipes(query){
       if(query == 'mine'){
          // this.getRecipes();
