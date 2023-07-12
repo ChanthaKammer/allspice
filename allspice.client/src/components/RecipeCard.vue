@@ -13,7 +13,7 @@
       class="position-absolute top-0 start-0 w-100 h-100 d-flex flex-column justify-content-start"
       >
       <button class="bg-light text-white fs-5">
-         <h1 class="bg-light" v-if="recipeIngredients.length > 0"> Ingredients </h1>
+         <h1 class="bg-light" v-if="recipeIngredients.length > 0"> {{ recipeIngredients.length }} Ingredients </h1>
       </button>
       </div>
       <div
@@ -58,9 +58,6 @@
                      <h1 v-if="!editing" class="modal-title fs-5" id="exampleModalLabel">{{ recipe.title }}</h1>
                      <h1 v-if="!editing" class="modal-title fs-5 text-success bg-dark rounded-3 p-2" id="exampleModalLabel">{{ recipe.category }}</h1>
                   </div>
-                  <div class="container-fluid">
-                     {{ recipeIngredients }}
-                  </div>
                   <p v-if="!editing" class="pt-2"> {{ recipe.instructions }} </p>
                   <label v-if="editing" for="recipeImg" class="form-label">Recipe Image</label>
                   <input v-if="editing" type="text" class="form-control mb-1" name="" id="titletext" v-model="editable.img">
@@ -70,9 +67,37 @@
                   <input v-if="editing" type="text" class="form-control mb-1" name="" id="categorytext" v-model="editable.category">
                   <label v-if="editing" for="recipeInstructions" class="form-label">Recipe Instructions</label>
                   <textarea v-if="editing" type="textarea" rows="4" class="form-control mb-1" name="" id="instructionstext" v-model="editable.instructions"></textarea>
+                  <div class="container-fluid" v-if="recipeIngredients.length > 0">
+                        <h1 v-for="i in recipeIngredients" :key="i.id">
+                           {{ i.name }} {{ i.quantity }}
+                           <i class="mdi mdi-delete text-danger"></i>
+                        </h1>
+                  </div>
+                  <div v-if="editing" class="d-flex justify-content-align-items-end">
+                     <div class="col-8 d-flex align-items-end">
+                        <label for="Recipe Category" class="form-label">Ingredient</label>
+                     </div>
+                     <div class="col-2">
+                        <label for="Recipe Category" class="form-label">Quantity</label>
+                     </div>
+                  </div>
+                  <div v-if="editing" class="d-flex mb-3 justify-content-between">
+                     <div class="col-8 pe-1">
+                        <input type="text" class="form-control" id="ingredientName" placeholder="Ingredient">
+                     </div>
+                     <div class="col px-1">
+                        <input type="text" class="form-control" id="ingredientQuantity" placeholder="Quantity">
+                     </div>
+                     <button class="btn btn-info">
+                           Add
+                     </button>
+                  </div>
+                  <!-- <div class="container-fluid" v-if="recipeIngredients.length > 0">
+                        <h1 v-for="i in recipeIngredients" :key="i.id">
+                           {{ i.name }} {{ i.quantity }}
+                        </h1>
+                  </div> -->
                </div>
-            </div>
-            <div class="row justify-content-around p-3">
             </div>
          </div>
          <div class="modal-footer d-flex flex-row justify-content-between">
@@ -80,7 +105,7 @@
                <img :src="recipe.creator.picture" :alt="recipe.creator.name" class="img-fluid rounded-circle object-fit-cover" style="height: 3rem; width: 3rem;">
                <h4>{{ recipe.creator.name }}</h4>
             </div>
-            <button v-if="account.id != recipe.creator.id && !editing" type="button" class="btn btn-success" @click="editing = !editing; console.log(editing)">Edit Recipe</button>
+            <button v-if="account.id == recipe.creator.id && !editing" type="button" class="btn btn-success" @click="editing = !editing">Edit Recipe</button>
             <button v-if="editing" type="button" class="btn btn-success" @click="editing = !editing; console.log(editing)">Save Changes</button>
          </div>
       </div>
@@ -121,16 +146,16 @@ setup(props) {
    })
    const editing = ref(false);
    const editable = ref();
-   const recipeIngredients = ref();
+   // const recipeIngredients = ref();
    watchEffect(() => {
       editable.value = props.recipe;
    })
    return {
       async addFavorite(){
          try{
+            isFavorite.value = true;
             logger.log("liking", props.recipe.id)
             await favoriteService.addFavorite(props.recipe.id)
-            isFavorite.value = true;
             // Modal.getOrCreateInstance(`#exampleModal-${props.recipe.id}`).hide()
          } catch (error){
             logger.error(error.Message)
@@ -138,9 +163,9 @@ setup(props) {
       },
       async removeFavorite(){
          try{
+            isFavorite.value = false;
             logger.log("liking", props.recipe.id)
             // logger.log(favoriteId)
-            isFavorite.value = false;
             await favoriteService.removeFavorite(favoriteId.value.favoriteId)
          } catch (error){
             logger.error(error.Message)
