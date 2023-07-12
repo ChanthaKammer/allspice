@@ -26,7 +26,6 @@
       <button class="btn btn-light" type="button"
          data-bs-toggle="modal"
          :data-bs-target="'#exampleModal-' + recipe.id">View Recipe</button>
-         <button @click="addFavorite()">Add favorite</button>
       </div>
    </div>
 </div>
@@ -34,7 +33,7 @@
 <div
 :id="'exampleModal-' + recipe.id" class="modal animate__animated animate__fadeIn animate__fast sticky-top " tabindex="-1" :aria-labelledby="'exampleModalLabel-' + recipe.id" aria-hidden="true" data-bs-scroll="true"
 >
-   <div class="modal-dialog modal-xl modal-dialog-scrollable">
+   <div class="modal-dialog  modal-dialog-scrollable">
       <div class="modal-content">
          <div class="d-flex flex-row justify-content-between p-3 fs-5">
             <button
@@ -44,7 +43,7 @@
                aria-label="Close"
             ></button>
             <div>
-               <i v-if="account.id != recipe.creator.id" class="mdi mdi-delete float-end" style="font-size: 2rem; color:red" role="button"></i>
+               <i v-if="account.id == recipe.creator.id" class="mdi mdi-delete float-end" style="font-size: 2rem; color:red" role="button" @click="deleteRecipe()"></i>
                <i class="mdi mdi-heart-outline float-end" style="font-size: 2rem" role="button" v-if="!isFavorite" @click="addFavorite()"></i>
                <i class="mdi mdi-heart float-end" style="font-size: 2rem" role="button" v-if="isFavorite" @click="removeFavorite()"></i>
             </div>
@@ -98,6 +97,7 @@ import { Recipe } from "../models/Recipe.js";
 import { Modal } from "bootstrap";
 import { computed, onMounted, ref, watchEffect } from "vue";
 import { favoriteService, ingredientService } from "../services/EverythingService.js";
+import { everythingService } from "../services/EverythingService.js";
 export default {
    props: {
    recipe: { type: Object, required: true }
@@ -146,6 +146,14 @@ setup(props) {
             logger.error(error.Message)
          }
       },
+      async deleteRecipe(){
+         try{
+            // logger.log("deleting recipe", props.recipe.id)
+            await everythingService.nukeRecipe(props.recipe.id);
+         } catch (error) {
+            logger.error(error.Message)
+         }
+      },
       editing,
       editable,
       recipeIngredients: computed(() => AppState.ingredients.filter(i => i.recipeId == props.recipe.id)),
@@ -158,6 +166,12 @@ setup(props) {
 </script>
 
 <style scoped lang="scss">
+
+.modal .modal-body{
+   max-height: 50000px;
+   overflow-y: auto;
+}
+
 * {
 border: 0px solid tan;
 }

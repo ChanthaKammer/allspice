@@ -30,6 +30,12 @@ class EverythingService {
       AppState.recipes.push(new Recipe(res.data));
       logger.log("Creating recipe", recipeData);
    }
+
+   async nukeRecipe(recipeId){
+      const res = await api.delete(`api/recipes/${recipeId}`);
+      AppState.recipes = AppState.recipes.filter(r => r.id != recipeId);
+      logger.log("Deleting recipe", recipeId, res.data);
+   }
 }
 
 
@@ -47,6 +53,16 @@ class IngredientService {
       // console.log(AppState.ingredients)
       // console.log("get ingredients by recipe id", recipeId,  res.data);
       // console.log(AppState.ingredients);
+   }
+   async addIngredient(ingredientData) {
+      const res = await api.post('api/ingredients', ingredientData);
+      AppState.ingredients.push(new Ingredient(res.data));
+      logger.log("Adding ingredient", ingredientData);
+   }
+   async deleteIngredient(ingredientId){
+      const res = await api.delete(`api/ingredients/${ingredientId}`);
+      AppState.ingredients = AppState.ingredients.filter(i => i.id != ingredientId);
+      logger.log("Deleting ingredient", ingredientId);
    }
 }
 

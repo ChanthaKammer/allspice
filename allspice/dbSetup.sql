@@ -57,6 +57,7 @@ INSERT INTO favorites
 VALUES("649caf64efdb2de0a2c28353", LAST_INSERT_ID());
 SELECT account FROM favorites favs JOIN accounts account on account.id = fav.accountId WHERE fav.recipeId = 1;
 
+SELECT * FROM favorites;
 
 -- SELECT rcp.*,
 --       creator.*

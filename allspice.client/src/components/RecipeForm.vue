@@ -14,7 +14,13 @@
             </div>
             <div class="mb-3">
                <label for="Recipe Category" class="form-label">Category</label>
-               <input type="text" class="form-control" id="recipeCategory" v-model="editable.category">
+               <select class="form-select" aria-label="Type Selection" v-model="editable.category" placeholder="">
+                        <option selected>Select Type</option>
+                        <option value="sandwich">Sandwich</option>
+                        <option value="soup">Soup</option>
+                        <option value="miata">Miata</option>
+                        <option value="Miscalanias">Miscalanias</option>
+               </select>
             </div>
             <div class="mb-3">
                <label for="Instructions" class="form-label">Instructions</label>
